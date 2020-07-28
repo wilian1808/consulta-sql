@@ -2,8 +2,8 @@
 
 El gestor de base de datos utilizado es **mysql** por problemas que ocurrieron al momento de instalar el gestor de **sql server** se adjuntan los enlaces donde se encuentras las bases de datos de ejemplos usados para realizar la tarea.
 
-- [Base de datos Northwind para mysql](https://documentation.alphasoftware.com/documentation/pages/GettingStarted/GettingStartedTutorials/Basic%20Tutorials/Northwind/northwindMySQL.xml)
-- 
+- [Base de datos NorthWind para mysql](https://documentation.alphasoftware.com/documentation/pages/GettingStarted/GettingStartedTutorials/Basic%20Tutorials/Northwind/northwindMySQL.xml)
+- [Base de datos AventureWorks para mysql](https://github.com/tapsey/AdventureWorksMYSQL)
 
 #### 1. ¿Cuál es la mejor descripción para las siguientes consultas en la BD Northwind? ¿Qué devuelve cada una?
 

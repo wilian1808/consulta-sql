@@ -1,7 +1,26 @@
-SELECT ProductID, SUM(Quantity) AS algo FROM order_details GROUP BY ProductID ORDER BY 2 DESC;
+SELECT ProductID, SUM(Quantity) AS algo
+	FROM order_details
+	GROUP BY ProductID 
+	ORDER BY 2 DESC;
+
+SELECT ProductID, SUM(Quantity) AS algo
+	FROM order_details
+	GROUP BY ProductID 
+	ORDER BY 2 DESC
+    LIMIT 1;
 
 
-SELECT CustomerID, COUNT(CustomerID) AS pedidos FROM orders GROUP BY CustomerID ORDER BY pedidos DESC LIMIT 1;
+SELECT CustomerID, COUNT(CustomerID) AS pedidos
+	FROM orders
+	GROUP BY CustomerID
+	ORDER BY pedidos DESC;
+
+
+SELECT CustomerID, COUNT(CustomerID) AS pedidos 
+    FROM orders 
+    GROUP BY CustomerID 
+    ORDER BY pedidos DESC 
+    LIMIT 1;
 
 
 SELECT p.ProductID, p.name, COUNT(s.ProductID) AS cantidad_ventas
