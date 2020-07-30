@@ -1,6 +1,6 @@
 ## TAREAS SOBRE CONSULTAS SQL
 
-El gestor de base de datos utilizada es **mysql** para *Northwind* y **sql-server** para *AdventureWorks* se trabajo de esta manera debido a algunos inconvenientes que ocurrieron al momento de instalar el las respectivas bases de datos, se adjuntan los enlaces donde se encuentras las bases de datos de ejemplos usados para realizar la tarea.
+El gestor de base de datos utilizada es **mysql** para *Northwind* y **sql-server** para *AdventureWorks* se trabajo de esta manera debido a algunos inconvenientes que ocurrieron al momento de instalar las respectivas bases de datos, se adjuntan los enlaces donde se encuentras las bases de datos de ejemplos usados para realizar la tarea.
 
 - [Base de datos NorthWind para mysql](https://documentation.alphasoftware.com/documentation/pages/GettingStarted/GettingStartedTutorials/Basic%20Tutorials/Northwind/northwindMySQL.xml)
 - [Base de datos AventureWorks para sql-server](https://docs.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver15&tabs=ssms)
@@ -87,6 +87,8 @@ SELECT TOP 3 p.ProductID, p.Name AS NameProduct, COUNT(s.ProductID) AS VecesVend
     GROUP BY p.ProductID, p.Name
     ORDER BY VecesVendido DESC;
 ```
+> 1. Pedimos que nos seleccione el *p.ProductID*, *p.NameProduct* y la cantidad que se vendio de un producto esto lo obtenemos usando *COUNT* de *s.ProductID* de la tabla *Production.Product* que es renombrado a *p* y realizamos el respectivo *INNER JOIN* con la tabla *Sales.SalesOrderDetail* que es renombrado a *s* luego usando *ON* pasamos los valores *p.ProductID* que se compara con *s.ProductID* esto se hace para que coincidan las filas de acuerdo a los valores que se encuentran en ambas tablas, con ayuda de *GROUP BY* agrupamos las columnas que no estan ligadas a la tabla resultante y usando *ORDER BY* ordenamos de acuerdo a la cantidad de veces que se vendio un producto de forma descendente *DESC* como la pregunta nos pide los 3 productos mas vendidos agregamos despues del *SELECT* esto *TOP 3*;
+
 
 | ProductID |      NameProduct     | VecesVendido |
 | --------- | -------------------  | ------------ |

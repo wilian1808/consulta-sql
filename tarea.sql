@@ -3,6 +3,7 @@ SELECT ProductID, SUM(Quantity) AS algo
 	GROUP BY ProductID 
 	ORDER BY 2 DESC;
 
+
 SELECT ProductID, SUM(Quantity) AS algo
 	FROM order_details
 	GROUP BY ProductID 
@@ -23,17 +24,17 @@ SELECT CustomerID, COUNT(CustomerID) AS pedidos
     LIMIT 1;
 
 
-SELECT p.ProductID, p.name, COUNT(s.ProductID) AS cantidad_ventas
-    FROM Product AS p INNER JOIN SalesOrderDetail AS s
+SELECT TOP 3 p.ProductID, p.Name AS NameProduct, COUNT(s.ProductID) AS VecesVendido
+    FROM Production.Product AS p
+    INNER JOIN Sales.SalesOrderDetail AS s
     ON p.ProductID = s.ProductID
-    GROUP BY p.ProductID, p.name
-    ORDER BY cantidad_ventas DESC
-    LIMIT 3;
+    GROUP BY p.ProductID, p.Name
+    ORDER BY VecesVendido DESC;
 
 
-
-RESTORE DATABASE AdventureWorks FROM DISK = '/var/opt/mssql/backup/AdventureWorks2019.bak' WITH MOVE 'AdventureWorks2019_Data' TO '/var/opt/mssql/data/AdventureWorks2019_Data.mdf'
-
-
-19_Data.mdf', MOVE 'AdventureWorks2019_Log' TO '/var/opt/mssql/data/AdventureWorks2019_log.ldf'
-2> GO
+SELECT TOP 1 SUM(SalesQuota) AS CantidadVentas, YEAR(QuotaDate) AS AñoDeVenta
+    FROM Sales.SalesPersonQuotaHistory AS s
+    INNER JOIN Person.Person AS p
+    ON s.BusinessEntityID = p.BusinessEntityID
+    GROUP BY YEAR(QuotaDate)
+    ORDER BY CantidadVentas ASC
