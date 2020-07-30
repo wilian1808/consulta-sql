@@ -87,7 +87,7 @@ SELECT TOP 3 p.ProductID, p.Name AS NameProduct, COUNT(s.ProductID) AS VecesVend
     GROUP BY p.ProductID, p.Name
     ORDER BY VecesVendido DESC;
 ```
-> 1. Pedimos que nos seleccione el *p.ProductID*, *p.NameProduct* y la cantidad que se vendio de un producto esto lo obtenemos usando *COUNT* de *s.ProductID* de la tabla *Production.Product* que es renombrado a *p* y realizamos el respectivo *INNER JOIN* con la tabla *Sales.SalesOrderDetail* que es renombrado a *s* luego usando *ON* pasamos los valores *p.ProductID* que se compara con *s.ProductID* esto se hace para que coincidan las filas de acuerdo a los valores que se encuentran en ambas tablas, con ayuda de *GROUP BY* agrupamos las columnas que no estan ligadas a la tabla resultante y usando *ORDER BY* ordenamos de acuerdo a la cantidad de veces que se vendio un producto de forma descendente *DESC* como la pregunta nos pide los 3 productos mas vendidos agregamos despues del *SELECT* esto *TOP 3*;
+> Seleccionamos el *p.ProductID*, *p.NameProduct* y la cantidad que se vendio de un producto esto lo obtenemos usando *COUNT* de *s.ProductID* que es renombrado a *VecesVendido* de la tabla *Production.Product* que es renombrado a *p* y realizamos el respectivo *INNER JOIN* con la tabla *Sales.SalesOrderDetail* que es renombrado a *s* luego usando *ON* pasamos los valores *p.ProductID* que se compara con *s.ProductID* esto se hace para que coincidan las filas de acuerdo a los valores que se encuentran en ambas tablas, con ayuda de *GROUP BY* agrupamos las columnas que no estan ligadas a la tabla resultante y usando *ORDER BY* ordenamos de acuerdo a la cantidad de veces que se vendio un producto de forma descendente *DESC* como la pregunta nos pide los 3 productos mas vendidos agregamos despues del *SELECT* esto *TOP 3*;
 
 
 | ProductID |      NameProduct     | VecesVendido |
@@ -107,6 +107,7 @@ SELECT TOP 1 SUM(SalesQuota) AS CantidadVentas, YEAR(QuotaDate) AS AñoDeVenta
     GROUP BY YEAR(QuotaDate)
     ORDER BY CantidadVentas ASC;
 ```
+> Seleccionamos con ayuda de *SUM* de *SalesQuota* que renombramos a *CantidadVentas* esto es la cantidad total de ventas que se obtuvo, con ayuda de *YEAR* de *QuotaDate* que renombramos a *AñoDeVenta* que es el año en el cual ocurrieron las ventas de la tabla *Sales.SalesPersonQuotanHistory* que es renombrado a *s* luego usamos *INNER JOIN* pasamos la segunda tabla que es *Person.Person* que renombramos a *p* y con ayuda de *ON* pasamos los valores de *s.BusinessEntityID* que comparamos con *p.BusinessEntityID* para que las filas coincidan de acuerdo a los valores que estan en ambas tablas, *GROUP BY* nos ayuda a agrupar las columnas sueltas que tengamos y *ORDER BY* se encarga de ordenar de acuerdo a la *CantidadVentas* de forma ascendente *ASC*, en la pregunta se nos pide el primer año eso lo obtenemos agregando *TOP 1* despues del *SELECT*.
 
 | CantidadVentas | AñoDeVenta |
 | -------------- | ---------- |
