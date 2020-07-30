@@ -1,11 +1,12 @@
 ## TAREAS SOBRE CONSULTAS SQL
 
-El gestor de base de datos utilizado es **mysql** por problemas que ocurrieron al momento de instalar el gestor de **sql server** se adjuntan los enlaces donde se encuentras las bases de datos de ejemplos usados para realizar la tarea.
+El gestor de base de datos utilizada es **mysql** para *Northwind* y **sql-server** para *AdventureWorks* se trabajo de esta manera debido a algunos inconvenientes que ocurrieron al momento de instalar el las respectivas bases de datos, se adjuntan los enlaces donde se encuentras las bases de datos de ejemplos usados para realizar la tarea.
 
 - [Base de datos NorthWind para mysql](https://documentation.alphasoftware.com/documentation/pages/GettingStarted/GettingStartedTutorials/Basic%20Tutorials/Northwind/northwindMySQL.xml)
-- [Base de datos AventureWorks para mysql](https://github.com/tapsey/AdventureWorksMYSQL)
+- [Base de datos AventureWorks para sql-server](https://docs.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver15&tabs=ssms)
 
 #### 1. ¿Cuál es la mejor descripción para las siguientes consultas en la BD Northwind? ¿Qué devuelve cada una?
+Trabajado con *MySql*
 
 En la base de datos *NorthWind* se realizo un cambio a la tabla llamada *order details* esta fue renombrada a: *order_details*.
 
@@ -44,7 +45,7 @@ SELECT CustomerID, COUNT(CustomerID) AS pedidos
 | CENTC      | 1       |
 
 #### 2. ¿Que pasa agregando TOP 1?
-Cuando agregamos **Top 1** hacemos que nos devuelva tan solo la primera fila que complu con la consulta. El equivalente en **Mysql** es **Limit 1**.
+Cuando agregamos **Top 1** hacemos que nos devuelva tan solo la primera fila que cumpla con la consulta. El equivalente en **Mysql** es **Limit 1**.
 
 ```sql
 SELECT ProductID, SUM(Quantity) AS algo
@@ -74,20 +75,37 @@ SELECT CustomerID, COUNT(CustomerID) AS pedidos
 
 ## En la base de datos AdventureWorks (explique el proceso)
 
+Trabajado con *Sql-Server*
+
 #### 1. Realizar una consulta que muestre los 3 productos más vendidos
 
 ```sql
-SELECT p.ProductID, p.name, COUNT(s.ProductID) AS cantidad_ventas
-	FROM Product AS p INNER  JOIN SalesOrderDetail AS s
-	ON p.ProductID = s.ProductID
-	GROUP BY p.ProductID, p.name
-	ORDER BY cantidad_ventas DESC
-	LIMIT  3;
+SELECT TOP 3 p.ProductID, p.Name AS NameProduct, COUNT(s.ProductID) AS VecesVendido
+    FROM Production.Product AS p
+    INNER JOIN Sales.SalesOrderDetail AS s
+    ON p.ProductID = s.ProductID
+    GROUP BY p.ProductID, p.Name
+    ORDER BY VecesVendido DESC;
 ```
+
+| ProductID |      NameProduct     | VecesVendido |
+| --------- | -------------------  | ------------ |
+|    870    | Water Bottle - 30 oz |     4688     |
+|    712    | AWC Logo Cap         |     3382     |
+|    873    | Patch kit/8 Patches  |     3354     | 
 
 
 #### 2. ¿Cual año fue el peor para las ventas?
 
 ```sql
-
+SELECT TOP 1 SUM(SalesQuota) AS CantidadVentas, YEAR(QuotaDate) AS AñoDeVenta
+    FROM Sales.SalesPersonQuotaHistory AS s
+    INNER JOIN Person.Person AS p
+    ON s.BusinessEntityID = p.BusinessEntityID
+    GROUP BY YEAR(QuotaDate)
+    ORDER BY CantidadVentas ASC;
 ```
+
+| CantidadVentas | AñoDeVenta |
+| -------------- | ---------- |
+|   10359000.00  |    2014    |

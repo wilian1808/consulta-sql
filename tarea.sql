@@ -29,3 +29,11 @@ SELECT p.ProductID, p.name, COUNT(s.ProductID) AS cantidad_ventas
     GROUP BY p.ProductID, p.name
     ORDER BY cantidad_ventas DESC
     LIMIT 3;
+
+
+
+RESTORE DATABASE AdventureWorks FROM DISK = '/var/opt/mssql/backup/AdventureWorks2019.bak' WITH MOVE 'AdventureWorks2019_Data' TO '/var/opt/mssql/data/AdventureWorks2019_Data.mdf'
+
+
+19_Data.mdf', MOVE 'AdventureWorks2019_Log' TO '/var/opt/mssql/data/AdventureWorks2019_log.ldf'
+2> GO
